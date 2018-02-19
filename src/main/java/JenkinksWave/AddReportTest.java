@@ -22,25 +22,18 @@ import java.util.List;
 
  */
 public class AddReportTest {
-    WebDriver dr;
-    PageResources pageResources;
-    Faker faker = new Faker();
-    Boolean checkvalidity = true;
 
-    @BeforeClass
-    public void setup() throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         //opening in Chrome Driver
-
+        WebDriver dr;
+        PageResources pageResources;
+        Faker faker = new Faker();
+        Boolean checkvalidity = true;
         dr = new ChromeDriver();
         Thread.sleep(3000);
         //dr.manage().window().maximize();
         pageResources = new PageResources(dr);
         //dr.get("http://fits.qauber.com/#/page/login");
-
-    }
-
-    @Test(enabled = true)
-    public void reportaddtest() throws InterruptedException {
         dr.get("http://fits.qauber.com/#/page/login");
         Thread.sleep(6000);
         pageResources.getLoginPage().userNameField().sendKeys(pageResources.getLoginPage().getUsername());
@@ -124,7 +117,6 @@ public class AddReportTest {
         String lastname = reportID[2];
 
 
-
         // pageResources.getReports().viewButtonByIndex(0).click();
         Thread.sleep(5000);
         pageResources.getAddReportIDInformation().scrollDown();
@@ -140,7 +132,7 @@ public class AddReportTest {
         if (report.contains(firstname))
             checkStatus = true;
         try {
-            Assert.assertTrue(checkStatus == true);
+            Assert.assertTrue(checkStatus);
             System.out.println("Found " + firstname + " in the View report text");
 
 
@@ -152,7 +144,7 @@ public class AddReportTest {
         if (report.contains(lastname))
             checkStatus = true;
         try {
-            Assert.assertTrue(checkStatus == true);
+            Assert.assertTrue(checkStatus);
             System.out.println("Found " + lastname + " in the View report text");
 
 
@@ -165,7 +157,7 @@ public class AddReportTest {
             checkStatus = true;
         try {
             Assert.assertTrue(checkStatus == true);
-            System.out.println("Found " + report_ID+ " in the View report text");
+            System.out.println("Found " + report_ID + " in the View report text");
 
 
         } catch (Throwable t) {
@@ -173,15 +165,12 @@ public class AddReportTest {
 
 
         }
-    }
 
-        @AfterClass
-        public void breakDown () {
-            dr.close();
-            dr.quit();
-
-        }
+        dr.close();
+        dr.quit();
 
     }
+
+}
 
 
